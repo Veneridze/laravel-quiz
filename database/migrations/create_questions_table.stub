@@ -12,7 +12,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('questions', function (Blueprint $table) {
-            
+            $table->id();
+            $table->string('label');
+            $table->boolean('multiple');
+            $table->string('type');
         });
     }
 

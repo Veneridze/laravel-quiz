@@ -18,7 +18,7 @@ class Quiz extends Model {
         return $this->hasMany(Attempt::class);
     }
 
-    public function getActiveAttempt(User $user): Attempt | null {
+    public function getActiveAttempt(Model $user): Attempt | null {
         $attempt = $this
             ->attempts()
             ->whereBelongsTo($user)

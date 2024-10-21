@@ -7,6 +7,7 @@ use Veneridze\LaravelPermission\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Veneridze\LaravelQuestion\Models\Answer;
 use Veneridze\LaravelQuestion\Models\Attempt;
+use Veneridze\LaravelQuestion\Models\Option;
 use Veneridze\LaravelQuestion\Models\Question;
 
 return new class extends Migration {
@@ -18,7 +19,7 @@ return new class extends Migration {
         Schema::table('anwers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Attempt::class)->constrained();
-            $table->foreignIdFor(Answer::class)->constrained();
+            $table->foreignIdFor(Option::class)->constrained();
             $table->timestamps();
 
             $table->unique(['attempt_id', 'answer_id', 'user_id']);

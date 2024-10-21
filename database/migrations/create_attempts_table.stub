@@ -14,13 +14,7 @@ return new class extends Migration {
     {
         Schema::table('attempts', function (Blueprint $table) {
             $table->id();
-            //$table->uuid();
             $table->foreignIdFor(User::class);
-           //$table->morphs('model');
-            //$table->unsignedTinyInteger('attempts')->nullable();
-            //$table->unsignedTinyInteger('mini')
-            //$table->dateTime('activated_at')->nullable();
-            //$table->uuid('activation_key')->unique()->nullable();
             $table->dateTime('ended_at')->nullable();
             $table->timestamps();
         });

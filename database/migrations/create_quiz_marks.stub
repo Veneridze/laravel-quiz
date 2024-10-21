@@ -1,0 +1,29 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Veneridze\LaravelPermission\Models\Role;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('quiz_marks', function (Blueprint $table) {
+            $table->id();
+            $table->string('mark');
+            $table->unsignedTinyInteger('correct_count');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('quiz_marks');
+    }
+};

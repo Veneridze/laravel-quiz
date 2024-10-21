@@ -1,0 +1,37 @@
+{
+    "name": "veneridze/laravel-quiz",
+    "description": "Create test with questions and answers. Get test results",
+    "require": {
+        "php": ">=8.2",
+        "spatie/laravel-model-info": "^2.0",
+        "laravel/framework": "^11.0",
+        "spatie/laravel-data": "^4.8",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Veneridze\\LaravelQuestion\\QuestionProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Veneridze\\LaravelQuestion\\": "src/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "baseline": "vendor/bin/phpstan analyse --generate-baseline",
+        "test": "vendor/bin/pest"
+    },
+    "authors": [
+        {
+            "name": "Veneridze",
+            "email": "viacheslav.kopaev@yandex.ru"
+        }
+    ]
+}

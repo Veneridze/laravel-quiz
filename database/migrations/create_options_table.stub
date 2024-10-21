@@ -1,0 +1,32 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Veneridze\LaravelPermission\Models\Role;
+use Illuminate\Database\Migrations\Migration;
+use Veneridze\LaravelQuestion\Models\Question;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('question_options', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->foreignIdFor(Question::class);
+            $table->boolean('isCorrect');
+            $table->unique(['question_id', 'name']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('question_options');
+    }
+};

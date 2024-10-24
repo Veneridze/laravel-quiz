@@ -30,6 +30,6 @@ class Quiz extends Model {
             ->whereNull('ended_at')
             ->first();
 
-        return $attempt && $attempt->isActive() ? $attempt : null;
+        return $attempt && $attempt->isActive ? $attempt : null;
     }
 }

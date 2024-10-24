@@ -21,7 +21,7 @@ class AttemptController extends \Illuminate\Routing\Controller {
 
         return [
             'id' => $attempt->id,
-            'started' => $attempt->started_at,
+            'started' => $attempt->created_at,
             'questions' => $quiz->questions->map(fn(Question $question) => [
                 'label' => $question->label,
                 'multiple' => $question->multiple,

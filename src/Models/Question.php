@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model {
     protected $guarded = [];
+    public $timestamps = false;
     public function quiz(): BelongsTo {
         return $this->belongsTo(Quiz::class);
     }

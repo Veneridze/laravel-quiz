@@ -28,7 +28,7 @@ class AttemptController extends \Illuminate\Routing\Controller {
                 'type' => $question->type,
                 'options' => $question->options->map(fn(Option $option) => [
                     'id' => $option->id,
-                    'label' => $option->label,
+                    'label' => $option->name,
                     'checked' => $attempt->answers()->whereBelongsTo($option)->exists()
                 ])
             ])

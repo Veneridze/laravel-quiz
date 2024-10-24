@@ -13,12 +13,10 @@ class Answer extends Model {
     public function attempt(): BelongsTo {
         return $this->belongsTo(Attempt::class);
     }
-
     public function getIsCorrectAttribute(): bool {
         return true;
     }
-
-    public function question(): BelongsTo {
-        return $this->belongsTo(Question::class);
+    public function option(): BelongsTo {
+        return $this->belongsTo(Option::class);
     }
 }

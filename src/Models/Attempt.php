@@ -14,8 +14,8 @@ class Attempt extends Model {
     protected $appends = [
         'mark', 'correctAnswersCount', 'wrongAnswersCount', 'isActive', 'time'
     ];
-    public function question(): BelongsTo {
-        return $this->belongsTo(Question::class);
+    public function quiz(): BelongsTo {
+        return $this->belongsTo(Quiz::class);
     }
 
     public function getTimeAttribute(): int | null {
@@ -24,7 +24,7 @@ class Attempt extends Model {
 
     public function getisActiveAttribute() {
         
-        return is_null($this->finished_at) && (is_null($this->question->quiz->time) || Carbon::parse($this->finished_at)->diffInSeconds() < $this->question->quiz->time);
+        return is_null($this->finished_at) && (is_null($this->quiz->time) || Carbon::parse($this->finished_at)->diffInSeconds() < $this->quiz->time);
     }
 
     public function finish() {
@@ -42,7 +42,7 @@ class Attempt extends Model {
     }
 
     public function mark(): Mark | null {
-        return $this->question->quiz->mark()->where('correct_count', '<=', $this->correctAnswersCount)
+        return $this->quiz->mark()->where('correct_count', '<=', $this->correctAnswersCount)
         ->orderBy('correct_count')
         ->first();
     }

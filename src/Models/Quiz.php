@@ -26,7 +26,7 @@ class Quiz extends Model {
     public function getActiveAttempt(Model $user): Attempt | null {
         $attempt = $this
             ->attempts()
-            ->whereBelongsTo($user)
+            ->where('user_id', $user->id)
             ->whereNull('finished_at')
             ->first();
 

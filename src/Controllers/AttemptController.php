@@ -14,7 +14,7 @@ class AttemptController extends \Illuminate\Routing\Controller {
     }
     public function start(Quiz $quiz) {
         //create attempt
-        $attempt = $quiz->getActiveAttempt() ?? $quiz->attempts()->create([
+        $attempt = $quiz->getActiveAttempt(Auth::user()) ?? $quiz->attempts()->create([
             'user_id' => Auth::id(),
         ]);
 
@@ -51,7 +51,7 @@ class AttemptController extends \Illuminate\Routing\Controller {
             'answers' => ['required', 'array'],
             'answers.*' => ['exists:questions_options,id']
         ]);
-        $attempt = $quiz->getActiveAttempt();
+        $attempt = $quiz->getActiveAttempt(Auth::user());
         abort_if(!$attempt, 400, 'Нет активных попыток прохождения теста');
         $answers = $request->input('answers');
 
@@ -65,7 +65,7 @@ class AttemptController extends \Illuminate\Routing\Controller {
     }
 
     public function finish(Quiz $quiz) {
-        $attempt = $quiz->getActiveAttempt();
+        $attempt = $quiz->getActiveAttempt(Auth::user());
         abort_if(!$attempt, 400, 'Нет активных попыток прохождения теста');
         $attempt->finish();
         return $this->results($attempt);

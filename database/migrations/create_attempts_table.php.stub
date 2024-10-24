@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('attempts', function (Blueprint $table) {
+        Schema::create('attempts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->dateTime('ended_at')->nullable();

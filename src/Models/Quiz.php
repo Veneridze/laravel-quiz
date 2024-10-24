@@ -3,10 +3,14 @@ namespace Veneridze\LaravelQuestion\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Quiz extends Model {
 
     protected $guarded = [];
+    public function model(): MorphTo {
+        return $this->morphTo('model');
+    }
     public function questions(): HasMany {
         return $this->hasMany(Question::class);
     }

@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('quiz_marks', function (Blueprint $table) {
+        Schema::create('quiz_marks', function (Blueprint $table) {
             $table->id();
             $table->string('mark');
             $table->unsignedTinyInteger('correct_count');

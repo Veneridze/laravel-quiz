@@ -1,10 +1,14 @@
 <?php
-use Veneridze\LaravelQuestion\Models\Answer;
-use Veneridze\LaravelQuestion\Models\Attempt;
-use Veneridze\LaravelQuestion\Models\Option;
-use Veneridze\LaravelQuestion\Models\Question;
+namespace Veneridze\LaravelQuestion\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Veneridze\LaravelQuestion\Models\Quiz;
-class AttemptController {
+use Veneridze\LaravelQuestion\Models\Answer;
+use Veneridze\LaravelQuestion\Models\Option;
+use Veneridze\LaravelQuestion\Models\Attempt;
+use Veneridze\LaravelQuestion\Models\Question;
+
+class AttemptController extends \Illuminate\Routing\Controller {
     public function index(Quiz $quiz) {
         return $quiz->attempts()->whereBelongsTo(Auth::user());
     }

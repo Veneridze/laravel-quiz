@@ -16,7 +16,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('anwers', function (Blueprint $table) {
+        Schema::create('anwers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Attempt::class)->constrained();
             $table->foreignIdFor(Option::class)->constrained();

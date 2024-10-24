@@ -12,16 +12,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('quizes', function (Blueprint $table) {
+        Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->uuid();
             $table->foreignIdFor(User::class);
             $table->morphs('model');
-            $table->unsignedBigInteger('time');
+            $table->unsignedBigInteger('time')->nullable();
             $table->unsignedTinyInteger('attempts')->nullable();
-            //$table->unsignedTinyInteger('mini')
-            $table->dateTime('activated_at')->nullable();
-            $table->uuid('activation_key')->unique()->nullable();
         });
     }
 

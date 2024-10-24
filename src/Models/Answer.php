@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Answer extends Model {
+    protected $guarded = [];
     protected $casts = [
         'isCorrect' => 'boolean'
     ];

@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 use \Illuminate\Support\Facades\Auth;
 
 class Attempt extends Model {
-
+    protected $guarded = [];
     protected $casts = [
         'finished_at' => 'datetime'
     ];

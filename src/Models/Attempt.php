@@ -9,7 +9,7 @@ use \Illuminate\Support\Facades\Auth;
 class Attempt extends Model {
     protected $guarded = [];
     protected $casts = [
-        'finished_at' => 'datetime'
+        'ended_at' => 'datetime'
     ];
     protected $appends = [
         'mark', 'correctAnswersCount', 'wrongAnswersCount', 'isActive', 'time'
@@ -29,7 +29,7 @@ class Attempt extends Model {
 
     public function finish() {
         $this->update([
-            'finished_at' => Carbon::now()
+            'ended_at' => Carbon::now()
         ]);
     }
 

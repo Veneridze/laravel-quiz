@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Veneridze\LaravelPermission\Models\Role;
 use Illuminate\Database\Migrations\Migration;
+use Veneridze\LaravelQuestion\Models\Quiz;
 
 return new class extends Migration {
     /**
@@ -15,6 +16,7 @@ return new class extends Migration {
         Schema::create('attempts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Quiz::class);
             $table->dateTime('ended_at')->nullable();
             $table->timestamps();
         });

@@ -27,7 +27,7 @@ class Quiz extends Model {
         $attempt = $this
             ->attempts()
             ->where('user_id', $user->id)
-            ->whereNull('finished_at')
+            ->whereNull('ended_at')
             ->first();
 
         return $attempt && $attempt->isActive() ? $attempt : null;

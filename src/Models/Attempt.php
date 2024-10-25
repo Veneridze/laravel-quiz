@@ -75,11 +75,11 @@ class Attempt extends Model {
         return $this->mark();
     }
 
-    public function getCorrectAnswersAttribute() {
-        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == true);
+    public function getCorrectAnswersCountAttribute() {
+        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == true)->count();
     }
 
-    public function getWrongAnswersAttribute() {
-        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == false);
+    public function getWrongAnswersCountAttribute() {
+        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == false)->count();
     }
 }

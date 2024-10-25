@@ -10,6 +10,10 @@ class Answer extends Model {
     //    'isCorrect' => 'boolean'
     //];
 
+    protected $appends = [
+        'isCorrect'
+    ];
+
     public function attempt(): BelongsTo {
         return $this->belongsTo(Attempt::class);
     }

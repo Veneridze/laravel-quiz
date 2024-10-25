@@ -24,7 +24,7 @@ class Attempt extends Model {
 
     public function getisActiveAttribute() {
         
-        return is_null($this->finished_at) && (is_null($this->quiz->time) || Carbon::parse($this->finished_at)->diffInSeconds() < $this->quiz->time);
+        return is_null($this->finished_at) || (is_null($this->quiz->time) || Carbon::parse($this->finished_at)->diffInSeconds() < $this->quiz->time);
     }
 
     public function finish() {

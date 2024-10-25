@@ -76,10 +76,10 @@ class Attempt extends Model {
     }
 
     public function getCorrectAnswersAttribute() {
-        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect);
+        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == true);
     }
 
     public function getWrongAnswersAttribute() {
-        return $this->answers->filter(fn(Answer $answer) => !$answer->isCorrect);
+        return $this->answers->filter(fn(Answer $answer) => $answer->isCorrect == false);
     }
 }

@@ -41,8 +41,8 @@ class AttemptController extends \Illuminate\Routing\Controller {
             'id' => $attempt->id,
             'passed' => $attempt->isPassed(),
             'mark' => $attempt->mark,
-            'correct' => $attempt->correctAnswers,
-            'wrong' => $attempt->wrongAnswers
+            'correct' => $attempt->correctAnswersCount,
+            'wrong' => $attempt->wrongAnswersCount
         ];
     }
 

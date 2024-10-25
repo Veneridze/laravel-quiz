@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Answer extends Model {
     protected $guarded = [];
-    protected $casts = [
-        'isCorrect' => 'boolean'
-    ];
+    //protected $casts = [
+    //    'isCorrect' => 'boolean'
+    //];
 
     public function attempt(): BelongsTo {
         return $this->belongsTo(Attempt::class);

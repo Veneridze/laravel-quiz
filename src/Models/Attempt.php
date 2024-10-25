@@ -68,12 +68,11 @@ class Attempt extends Model {
     }
 
     public function isPassed(): bool {
-        return $this->mark() ? true : false;
+        return $this->mark() != 'bad';// ? true : false;
     }
 
-    public function getMarkAttribute() {
-        $mark = $this->mark();
-        return $mark ? $mark->mark : null;
+    public function getMarkAttribute(): string {
+        return $this->mark();
     }
 
     public function getCorrectAnswersAttribute() {

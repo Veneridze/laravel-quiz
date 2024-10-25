@@ -42,10 +42,29 @@ class Attempt extends Model {
         return $this->belongsTo(Auth::getConfig('model'));
     }
 
-    public function mark(): Mark | null {
-        return $this->quiz->mark()->where('correct_count', '<=', $this->correctAnswersCount)
-        ->orderBy('correct_count')
-        ->first();
+    public function mark(): string {
+        $correct = $this->correctAnswersCount;
+        if($correct < $this->quiz->minimal) {
+            return 'bad';
+        } else
+
+        if($correct >= $this->quiz->minimal && $correct < $this->quiz->good) {
+            return 'minimal';
+        } else
+
+        if($correct >= $this->quiz->good && $correct < $this->quiz->perfect) {
+            return 'good';
+        } else
+
+        if($correct >= $this->quiz->perfect) {
+            return 'perfect';
+        } else {
+            return 'unknown';
+        }
+
+        //return $this->quiz->mark()->where('correct_count', '<=', $this->correctAnswersCount)
+        //->orderBy('correct_count')
+        //->first();
     }
 
     public function isPassed(): bool {

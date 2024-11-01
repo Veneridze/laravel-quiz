@@ -19,7 +19,7 @@ class Attempt extends Model {
     }
 
     public function getTimeAttribute(): int | null {
-        return !$this->isActive ? Carbon::parse($this->ended_at)->diffInSeconds(Carbon::parse($this->created_at)) : null;
+        return !$this->isActive ? Carbon::parse($this->created_at)->diffInSeconds(Carbon::parse($this->ended_at)) : null;
     }
 
     public function getisActiveAttribute() {

@@ -8,12 +8,16 @@ use Veneridze\LaravelQuestion\Models\Option;
 use Veneridze\LaravelQuestion\Models\Attempt;
 use Veneridze\LaravelQuestion\Models\Question;
 
-class AttemptController extends \Illuminate\Routing\Controller {
-    public function index(Quiz $quiz) {
+class AttemptController extends \Illuminate\Routing\Controller
+{
+    public function index(Quiz $quiz)
+    {
         return $quiz->attempts()->whereBelongsTo(Auth::user());
     }
-    public function start(Quiz $quiz) {
+    public function start(Quiz $quiz)
+    {
         //create attempt
+        abort_if($quiz->attempts()->where('user_id', Auth::id())->count() >= $quiz->attempts, 400, 'Превышено число попыток');
         $attempt = $quiz->getActiveAttempt(Auth::user()) ?? $quiz->attempts()->create([
             'user_id' => Auth::id(),
         ]);
@@ -35,7 +39,8 @@ class AttemptController extends \Illuminate\Routing\Controller {
         ];
     }
 
-    public function results(Attempt $attempt) {
+    public function results(Attempt $attempt)
+    {
         abort_if($attempt->isActive, 400, 'Попытка ещё не завершена');
         return [
             'id' => $attempt->id,
@@ -46,7 +51,8 @@ class AttemptController extends \Illuminate\Routing\Controller {
         ];
     }
 
-    public function answer(Quiz $quiz, Request $request) {
+    public function answer(Quiz $quiz, Request $request)
+    {
         $request->validate([
             'answers' => ['required', 'array'],
             'answers.*' => ['exists:questions_options,id']
@@ -64,7 +70,8 @@ class AttemptController extends \Illuminate\Routing\Controller {
         return response(null, 201);
     }
 
-    public function finish(Quiz $quiz) {
+    public function finish(Quiz $quiz)
+    {
         $attempt = $quiz->getActiveAttempt(Auth::user());
         abort_if(!$attempt, 400, 'Нет активных попыток прохождения теста');
         $attempt->finish();
